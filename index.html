@@ -1,0 +1,154 @@
+# planeticket
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flight Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: #4facfe;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .row div {
+      flex: 1;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      border: none;
+      background: #4facfe;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #007bff;
+    }
+
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f1f1f1;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>✈️ Book Flight</h2>
+
+  <label>From</label>
+  <input type="text" id="from" placeholder="City or Airport">
+
+  <label>To</label>
+  <input type="text" id="to" placeholder="City or Airport">
+
+  <div class="row">
+    <div>
+      <label>Departure</label>
+      <input type="date" id="departure">
+    </div>
+    <div>
+      <label>Return</label>
+      <input type="date" id="return">
+    </div>
+  </div>
+
+  <label>Passengers</label>
+  <select id="passengers">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4+</option>
+  </select>
+
+  <label>Class</label>
+  <select id="class">
+    <option>Economy</option>
+    <option>Business</option>
+    <option>First Class</option>
+  </select>
+
+  <button onclick="bookFlight()">Search Flights</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  function bookFlight() {
+    const from = document.getElementById('from').value;
+    const to = document.getElementById('to').value;
+    const departure = document.getElementById('departure').value;
+    const returnDate = document.getElementById('return').value;
+    const passengers = document.getElementById('passengers').value;
+    const flightClass = document.getElementById('class').value;
+
+    if (!from || !to || !departure) {
+      alert("Please fill required fields!");
+      return;
+    }
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.style.display = "block";
+    resultDiv.innerHTML = `
+      <strong>Searching Flights...</strong><br><br>
+      From: ${from} <br>
+      To: ${to} <br>
+      Departure: ${departure} <br>
+      Return: ${returnDate || 'N/A'} <br>
+      Passengers: ${passengers} <br>
+      Class: ${flightClass}
+    `;
+  }
+</script>
+
+</body>
+</html>
